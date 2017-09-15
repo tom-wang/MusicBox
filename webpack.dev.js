@@ -13,8 +13,8 @@ module.exports = merge(common, {
         new webpack.HotModuleReplacementPlugin(),
     ],
     output: {
-        filename: '[name].bundle.[hash].js',
-        chunkFilename: '[name].chunk.[hash].js',
+        filename: '[name].bundle.[hash:8].js',
+        chunkFilename: '[name].chunk.[hash:8].js',
         path: path.join(__dirname, './dist/')
     },
 });

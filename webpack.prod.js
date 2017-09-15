@@ -30,8 +30,8 @@ module.exports = merge(common, {
         new webpack.HashedModuleIdsPlugin(), //覆盖默认的自增数字用于模块ID
     ],
     output: {
-        filename: '[name].bundle.[chunkhash].js',
-        chunkFilename: '[name].bundle.[chunkhash].js',
+        filename: '[name].bundle.[chunkhash:8].js',
+        chunkFilename: '[name].chunk.[chunkhash:8].js',
         path: path.join(__dirname, './dist/')
     },
 });

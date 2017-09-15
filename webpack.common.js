@@ -10,7 +10,7 @@ const config = {
     },
     resolve: {
         alias: {
-            vue: 'vue/dist/vue.esm.js'
+            //'vue$': 'vue/dist/vue.esm.js'
         }
     },
     resolveLoader: {
@@ -27,6 +27,12 @@ const config = {
                     {loader: 'vue-loader'}
                 ]
             },
+            {
+                test: /\.mp3$/,
+                use: [
+                    {loader: 'file-loader'}
+                ]
+            },
         ]
     },
     plugins: [
@@ -35,11 +41,11 @@ const config = {
         }),
         new CleanWebpackPlugin(['./dist']),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor'],
+            names: ['vendor'],
             minChunks: Infinity,
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['runtime'],
+            names: ['runtime'],
             minChunks: Infinity
         }),
     ]

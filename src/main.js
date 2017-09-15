@@ -1,27 +1,13 @@
 import Vue from 'vue';
-import Test from './test.vue';
-let app = new Vue({
-    el: '#app',
-    data: {
-        //message: 'Hello Vue!'
-    },
-    components: {
-        'test-component': Test
-    }
+import VueRouter from 'vue-router';
+import App from './App.vue';
+import routes from './routes/index.js';
+
+Vue.use(VueRouter);
+
+let router = new VueRouter({
+    routes
 });
-setTimeout(() => {
-    import(/*webpackChunkName:"vendor1"*/'lodash').then(_ => {
-        console.log(_.chunk(['a', 'b', 'c', 'd'], 2));
-    });
-    import(/*webpackChunkName:"vendor1"*/'jquery').then($ => {
-        console.log($);
-    });
-    /*
-    require.ensure(['lodash', 'jquery'], require => {
-        let _ = require('lodash');
-        let $ = require('jquery');
-        console.log(_.chunk(['a', 'b', 'c', 'd'], 2));
-        console.log($);
-    }, () => {}, 'vendor1');
-    */
-}, 5000);
+App.el = '#app';
+App.router = router;
+let app = new Vue(App);
