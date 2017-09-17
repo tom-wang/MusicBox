@@ -9,7 +9,7 @@
 <style>
 </style>
 <script>
-import Test from './components/test.vue';
+import Foo from './components/Foo.vue';
 export default {
     data: function() {
         return {
@@ -18,10 +18,12 @@ export default {
         };
     },
     components: {
-        'test-component': Test
+        'test-component': () => import(/*webpackChunkName:"testComponent"*/'./components/test.vue'),
+        'foo-component': Foo,
     },
     methods: {
         changeMessage() {
+            this.$store.commit('foobar');
             this.message = 'new Message';
         }
     }

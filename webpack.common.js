@@ -24,7 +24,15 @@ const config = {
             {
                 test: /\.vue$/,
                 use: [
-                    {loader: 'vue-loader'}
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            babel: {
+                                //presets: ['es2015'],
+                                //"plugins": ["syntax-dynamic-import"]
+                            }
+                        }
+                    }
                 ]
             },
             {

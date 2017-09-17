@@ -1,13 +1,9 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
 import App from './App.vue';
-import routes from './routes/index.js';
+import router from './router/index.js';
+import store from './store/index.js';
 
-Vue.use(VueRouter);
-
-let router = new VueRouter({
-    routes
-});
 App.el = '#app';
 App.router = router;
+App.store = store;
 let app = new Vue(App);
