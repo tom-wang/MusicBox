@@ -1,9 +1,17 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router/index.js';
-import store from './store/index.js';
+import createRouter from './router/index.js';
+import createStore from './store/index.js';
 
-App.el = '#app';
-App.router = router;
-App.store = store;
-let app = new Vue(App);
+function createApp() {
+    let router = App.router = createRouter();
+    let store = App.store = createStore();
+    let app = new Vue(App);
+    return {
+        app,
+        router,
+        store
+    };
+}
+
+export default createApp;

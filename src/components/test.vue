@@ -12,7 +12,7 @@
     <p>3</p>
     </template>
     <ul>
-        <li v-for="item in items" v-if="item.isOK">{{item.text}}-{{itemMessage}}</li>
+        <li v-for="item in items" :key="item.key" v-if="item.isOK">{{item.text}}-{{itemMessage}}</li>
     </ul>
     <ul>
         <li v-for="n in evenNumbers()">{{ n }}</li>
@@ -29,9 +29,9 @@ export default {
             innerMessage: 'hello, tom',
             isOK: false,
             items: [
-                {text: 'item1', isOK: true},
-                {text: 'item2', isOK: false},
-                {text: 'item3', isOK: true},
+                {text: 'item1', isOK: true, key: "1"},
+                {text: 'item2', isOK: false, key: "2"},
+                {text: 'item3', isOK: true, key: "3"},
             ],
             itemMessage: 'is an item',
             anotherMessage: function() {

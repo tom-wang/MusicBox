@@ -5,8 +5,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = {
     entry: {
-        main: './src/main.js',
-        vendor: ['vue'],
+        entry_client: './src/entry_client.js',
+        vendor: ['vue', 'vuex', 'vue-router'],
     },
     resolve: {
         alias: {
@@ -22,16 +22,19 @@ const config = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                use: [
+                    {
+                        loader: 'babel-loader'
+                    }
+                ],
+                exclude: /node_modules/
+            },
+            {
                 test: /\.vue$/,
                 use: [
                     {
-                        loader: 'vue-loader',
-                        options: {
-                            babel: {
-                                //presets: ['es2015'],
-                                //"plugins": ["syntax-dynamic-import"]
-                            }
-                        }
+                        loader: 'vue-loader'
                     }
                 ]
             },

@@ -10,7 +10,7 @@ module.exports = merge(common, {
         hot: true
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        //new webpack.HotModuleReplacementPlugin(),
     ],
     output: {
         filename: '[name].bundle.[hash:8].js',

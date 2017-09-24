@@ -5,9 +5,11 @@ import A from './modules/a.js';
 import B from './modules/b.js';
 
 Vue.use(Vuex);
-export default new Vuex.Store({
-    modules: {
-        a: A,
-        b: B
-    }
-});
+export default () => {
+    return new Vuex.Store({
+        modules: {
+            a: A,
+            b: B
+        }
+    });
+};
