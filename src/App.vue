@@ -1,8 +1,11 @@
 <template>
 <div>
     <test-component v-bind:message="message"></test-component>
+    <div>{{getMsg()}}</div>
+    <div>{{computeMsg}}</div>
     <div v-html="rawHtml"></div>
     <a href="#" @click="changeMessage">Change Message</a>
+    <a href="#" @click="changeMessageWithAction">Change Message With Action</a>
     <router-view></router-view>
     <VueLazyComponent timeout="5000">VueLazyComponent1</VueLazyComponent>
     <VueLazyComponent timeout="3000">VueLazyComponent2</VueLazyComponent>
@@ -25,10 +28,26 @@ export default {
         'test-component': Test,
         'foo-component': Foo,
     },
+    computed: {
+        computeMsg() {
+            let that = this;
+            let that1 = that;
+            return 'computed:' + that.message;
+        }
+    },
     methods: {
+        getMsg() {
+            let that = this;
+            return 'method:' + that.message;
+        },
         changeMessage() {
-            //this.$store.commit('foobar');
+            // 如果不同的两个模块都注册了foobar mutation，那么他们都会触发
+            this.$store.commit('foobar');
             this.message = 'new Message';
+        },
+        changeMessageWithAction() {
+            console.log(this.$store);
+            this.$store.dispatch('foobar');
         }
     }
 }

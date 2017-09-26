@@ -1,0 +1,3 @@
+// 根getters
+export default {
+};

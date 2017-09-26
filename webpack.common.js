@@ -1,13 +1,6 @@
-const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = {
-    entry: {
-        entry_client: './src/entry_client.js',
-        vendor: ['vue', 'vuex', 'vue-router'],
-    },
     resolve: {
         alias: {
             //'vue$': 'vue/dist/vue.esm.js'
@@ -46,20 +39,6 @@ const config = {
             },
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        }),
-        new CleanWebpackPlugin(['./dist']),
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendor'],
-            minChunks: Infinity,
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['runtime'],
-            minChunks: Infinity
-        }),
-    ]
 };
 
 module.exports = config;
