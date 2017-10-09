@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 
 module.exports = merge(common, {
     entry: {
@@ -29,6 +30,13 @@ module.exports = merge(common, {
             names: ['runtime'],
             minChunks: Infinity
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "manifest",
+            minChunks: Infinity
+        }),
+        // 此插件在输出目录中
+        // 生成 `vue-ssr-client-manifest.json`。
+        new VueSSRClientPlugin()
     ],
     output: {
         filename: '[name].bundle.[hash:8].js',

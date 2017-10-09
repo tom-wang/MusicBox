@@ -5,6 +5,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const common = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 
 module.exports = merge(common, {
     entry: {
@@ -32,6 +33,13 @@ module.exports = merge(common, {
         }),
         new UglifyJSPlugin(),
         new webpack.HashedModuleIdsPlugin(), //覆盖默认的自增数字用于模块ID
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "manifest",
+            minChunks: Infinity
+        }),
+        // 此插件在输出目录中
+        // 生成 `vue-ssr-client-manifest.json`。
+        new VueSSRClientPlugin()
     ],
     output: {
         filename: '[name].bundle.[chunkhash:8].js',

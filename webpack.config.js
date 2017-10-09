@@ -1,1 +1,1 @@
-./webpack.dev.js
+./webpack.server.js

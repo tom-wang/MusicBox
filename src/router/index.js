@@ -7,8 +7,12 @@ import Foo from '../components/Foo.vue';
 Vue.use(VueRouter);
 export default () => {
     return new VueRouter({
-        mode: 'history',
+        mode: 'hash',
         routes: [
+            { 
+                path: '*', 
+                component: Foo 
+            },
             { 
                 path: '/foo', 
                 component: Foo 
