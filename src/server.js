@@ -1,56 +1,7 @@
-//// 简单实例
-//// 第 1 步：创建一个 Vue 实例
-//const Vue = require('vue')
-//const app = new Vue({
-//    template: `<div>Hello {{myname}}</div>`,
-//    data: {
-//        myname: 'tom'
-//    }
-//})
-//// 第 2 步：创建一个 renderer
-//const renderer = require('vue-server-renderer').createRenderer({
-//    template: `<html>
-//            <head>
-//                <title>hello, world</title>
-//            </head>
-//            <body>
-//                <div><!--vue-ssr-outlet--></div>
-//            </body>
-//        </html>`,
-//    //如果开启inject，renderer生成html的步骤如下
-//    //1 解析模板中的head部分
-//    //2 拼接上context.head的内容
-//    //3 拼接<link rel="preload" .../> <link rel="prefetch" .../>内容，具体内容来自clientManifest和
-//    //4 拼接外链的style内容，使用<link rel="stylesheet" .../>，这些内容来自clientManifest
-//    //5 拼接context.styles的内容
-//    //6 解析模板中neck部分
-//    //7 拼接服务器端组件渲染出来的内容
-//    //8 拼接<script>window.__INITIAL_STATE = '';</script>内容，值为context.state序列化为JSON后的内容
-//    //9 拼接外链的script内容，使用<script src="xxx" defer></script>，内容来自clientManifest
-//    //10 解析模板中tail部分
-//    //如果不开启inject
-//    //则只进行以上1、6、7、10步骤
-//    inject: true, // 默认值为true
-//    //cache: {},
-//    //shouldPreload: 是一个函数，用来决定资源是否要进行preload（需要preload则返回true），注意不控制prefetch
-//    //clientManifest:
-//    //directives:
-//})
-//const context = {
-//    head: 'hello head', // inject开启时才会打入页面
-//    styles: `<style>*{color:red}</style>`,
-//    state: {a: 'b'},
-//}
-//// 第 3 步：将 Vue 实例渲染为 HTML
-//renderer.renderToString(app, context, (err, html) => {
-//    if (err) throw err
-//        console.log(html)
-//        // => <div data-server-rendered="true">Hello World</div>
-//})
-
 // 使用createBundleRenderer的例子
 const path = require('path');
 const fs = require('fs');
+const express = require('express');
 const { createBundleRenderer } = require('vue-server-renderer')
 
 const template = fs.readFileSync(path.resolve(__dirname, './index.template.html'), 'utf-8');
@@ -72,15 +23,15 @@ const context = {
 //    console.log(html)
 //})
 
-//流失渲染
-const stream = renderer.renderToStream(context);
-let html = ''
-stream.on('data', data => {
-    html += data.toString()
+const app = express();
+app.get('/', function (req, res) {
+    //流式渲染
+    const stream = renderer.renderToStream(context);
+    stream.on('error', err => {
+        console.log(err);
+    })
+    stream.pipe(res);
 })
-stream.on('end', () => {
-    console.log(html) // 渲染完成
-})
-stream.on('error', err => {
-    console.log(err);
+app.listen(3000, function () {
+    console.log('Example app listening on port 3000!')
 })
