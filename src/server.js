@@ -12,7 +12,8 @@ const renderer = createBundleRenderer(serverBundle, {
     clientManifest,
     template
     //basedir:
-    //runInNewContext
+    //默认值为true，此时会在解析JS时每个请求都会创建一个新的上下文，好处是安全，不好的地方是性能开销大，建议设置为false
+    runInNewContext: false
 })
 const context = { 
     title: 'Vue HN 2.0', // default title
