@@ -19,9 +19,9 @@ module.exports = merge(common, {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        }),
+        //new HtmlWebpackPlugin({
+        //    template: './src/index.html'
+        //}),
         new CleanWebpackPlugin(['./dist']),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor'],

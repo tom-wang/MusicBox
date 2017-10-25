@@ -13,7 +13,8 @@ export default context => {
             const matchedComponents = router.getMatchedComponents()
             // 匹配不到的路由，执行 reject 函数，并返回 404
             if (!matchedComponents.length) {
-                return reject({ code: 404 })
+                //return reject({ code: 404 })
+                return resolve(app);
             }
             // 对所有匹配的路由组件调用 `asyncData()`
             Promise.all(matchedComponents.map(Component => {

@@ -5,11 +5,15 @@ import createRouter from './router/index.js';
 import createStore from './store/index.js';
 
 function createApp() {
-    let router = App.router = createRouter();
-    let store = App.store = createStore();
+    let router = createRouter();
+    let store = createStore();
     // 同步路由状态(route state)到 store
     sync(store, router)
-    let app = new Vue(App);
+    let app = new Vue({
+        router,
+        store,
+        render: h => h(App)
+    });
     return {
         app,
         router,

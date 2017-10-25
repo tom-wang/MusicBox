@@ -18,9 +18,9 @@ module.exports = merge(common, {
     },
     plugins: [
         //new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        }),
+        //new HtmlWebpackPlugin({
+        //    template: './src/index.html'
+        //}),
         new CleanWebpackPlugin(['./dist']),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor'],
