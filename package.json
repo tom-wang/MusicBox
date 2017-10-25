@@ -1,7 +1,7 @@
 {
-  "name": "musicbox",
+  "name": "ssr_starter",
   "version": "1.0.0",
-  "description": "A Music Player For Web",
+  "description": "for vue ssr beginners!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,11 +21,8 @@
   },
   "homepage": "https://github.com/tom-wang/MusicBox#readme",
   "dependencies": {
-    "@xunlei/vue-lazy-component": "^1.0.9",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2",
     "vue-server-renderer": "^2.5.2",
     "vuex-router-sync": "^4.3.2"
   },
@@ -50,8 +47,7 @@
     "webpack": "^3.7.1",
     "webpack-dev-server": "^2.9.2",
     "webpack-merge": "^4.1.0",
-    "webpack-node-externals": "^1.6.0",
-    "weex-loader": "^0.5.3"
+    "webpack-node-externals": "^1.6.0"
   },
   "babel": {
     "presets": [
