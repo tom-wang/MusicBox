@@ -22,6 +22,11 @@ const renderer = createBundleRenderer(serverBundle, {
 //})
 
 const app = express();
+const serveStatic = require('serve-static')
+app.use(serveStatic(
+    path.join(__dirname, '../dist/'),
+    {'index': false}
+));
 app.get('/', (req, res) => {
     const context = { 
         title: 'vue ssr starter', // default title
