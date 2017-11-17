@@ -63,7 +63,9 @@ const renderer = createBundleRenderer(serverBundle, {
 })
 const context = { 
     title: 'vue srr starter', // default title
-    url: ''
+    url: '',
+    foo: 'hi foo',
+    bar: 'hi bar',
 }
 //非流式渲染
 //renderer.renderToString(context, (err, html) => {
