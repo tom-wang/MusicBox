@@ -30,7 +30,9 @@ app.use(serveStatic(
 app.get('/', (req, res) => {
     const context = { 
         title: 'vue ssr starter', // default title
-        url: ''
+        url: '',
+        foo: 'hi foo',
+        bar: 'hi bar',
     }
     //流式渲染
     const stream = renderer.renderToStream(context);
