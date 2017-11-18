@@ -14,6 +14,7 @@ export default context => {
             // 匹配不到的路由，执行 reject 函数，并返回 404
             if (!matchedComponents.length) {
                 //return reject({ code: 404 })
+                context.state = store.state
                 return resolve(app);
             }
             // 对所有匹配的路由组件调用 `asyncData()`
